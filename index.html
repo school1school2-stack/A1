@@ -3,84 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة الاختبار - الدخول العشوائي</title>
+    <title>بوابة الاختبارات العشوائية</title>
     <style>
+        /* تصميم عصري وبسيط */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            text-align: center; 
-            padding: 50px 20px; 
-            background-color: #f0f2f5; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
         }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        input[type="text"] {
-            width: 90%;
-            padding: 12px;
-            margin: 20px 0;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 18px;
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             text-align: center;
+            max-width: 450px;
+            width: 90%;
         }
-        button { 
-            padding: 15px 30px; 
-            font-size: 20px; 
-            cursor: pointer; 
-            background-color: #28a745; 
-            color: white; 
-            border: none; 
-            border-radius: 8px;
-            transition: 0.3s;
-            width: 100%;
+        h1 { color: #4a148c; margin-bottom: 10px; }
+        p { color: #666; font-size: 1.1rem; margin-bottom: 30px; }
+        
+        .start-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
         }
-        button:hover { background-color: #218838; }
-        h1 { color: #333; }
+        .start-btn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        .start-btn:active {
+            transform: scale(0.98);
+        }
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #999;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>مرحباً بك</h1>
-        <p>الرجاء إدخال اسمك الثلاثي لبدء الاختبار</p>
+    <div class="card">
+        <h1>مرحباً بك في الاختبار</h1>
+        <p>اضغط على الزر أدناه ليتم تحويلك إلى نموذج اختبار عشوائي.</p>
         
-        <input type="text" id="studentName" placeholder="اكتب اسمك هنا..." required>
-        
-        <br>
-        
-        <button onclick="startTest()">دخول النموذج</button>
+        <button class="start-btn" onclick="openRandomTest()">تفضل للدخول للاختبار</button>
+
+        <div class="footer-note">
+            ملاحظة: عند إعادة تحميل الصفحة قد يتغير النموذج المخصص لك.
+        </div>
     </div>
 
     <script>
-        function startTest() {
-            const nameInput = document.getElementById('studentName').value.trim();
-
-            // التأكد من أن الطالب أدخل اسمه
-            if (nameInput === "") {
-                alert("من فضلك، يجب كتابة الاسم أولاً قبل الدخول!");
-                return;
-            }
-
-            // قائمة النماذج الأربعة الخاصة بك
-            const urls = [
+        function openRandomTest() {
+            // الروابط الأربعة التي زودتني بها
+            const models = [
                 "https://school1school2-stack.github.io/Vvv/",
                 "https://school1school2-stack.github.io/Vvv2/",
                 "https://school1school2-stack.github.io/Vvv3/",
                 "https://school1school2-stack.github.io/Vvv4/"
             ];
 
-            // اختيار نموذج عشوائي
-            const randomIndex = Math.floor(Math.random() * urls.length);
-            const selectedUrl = urls[randomIndex];
-
-            // توجيه الطالب للنموذج
-            alert("بالتوفيق يا " + nameInput + "، سيتم توجيهك الآن لنموذجك.");
-            window.location.href = selectedUrl;
+            // اختيار رقم عشوائي من 0 إلى 3
+            const randomIndex = Math.floor(Math.random() * models.length);
+            
+            // التوجيه المباشر للرابط العشوائي
+            window.location.href = models[randomIndex];
         }
     </script>
 
